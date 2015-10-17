@@ -4,11 +4,12 @@ require 'net/http'
 require 'uri'
 require "digest/md5"
 
+FONT = './fonts/japanese_font.ttf'
+
 class Card
   WIDTH = 258
   HEIGHT = 156
   TEXT_BOX_HEIGHT = 40
-  FONT = './fonts/japanese_font.ttf'
 
   def initialize()
     @page_count = 0
@@ -39,7 +40,7 @@ class Card
     self.save_image(v["image"]) unless File.exist?(self.image_path(v["image"]))
     @pdf.image self.image_path(v["image"]), :width => WIDTH, :height => HEIGHT
 
-    @pdf.font_size 12
+    @pdf.font_size 14
     @pdf.fill_color 'cccccc'
     @pdf.transparent(0.5) do
       @pdf.fill_rectangle [0 ,(HEIGHT + TEXT_BOX_HEIGHT)/2], WIDTH, TEXT_BOX_HEIGHT
@@ -56,6 +57,11 @@ class Card
   def save()
     @pdf.render_file "./build/card.pdf"
   end
+end
+
+if not File.exist?(FONT) then
+  puts "You need to put Japanese True Type font in fonts directory with the name `japanese_font.ttf`."
+  exit
 end
 
 card = Card.new()
