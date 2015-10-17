@@ -29,7 +29,7 @@ class Card
   end
 
   def image_path(url)
-    return "./images/" + Digest::MD5.hexdigest(url) + ".jpg"
+    return "./cache/" + Digest::MD5.hexdigest(url) + ".jpg"
   end
 
   def write(v)
