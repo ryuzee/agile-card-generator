@@ -1,4 +1,4 @@
 build/*.pdf
-cache/*.jpg
+cache/*
 fonts/*.ttf
 fonts/*.otf
