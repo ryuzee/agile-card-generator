@@ -59,11 +59,11 @@ class Card
     puts short_url
 
     @pdf.font_size 14
-    @pdf.fill_color 'cccccc'
-    @pdf.transparent(0.5) do
+    @pdf.fill_color '222222'
+    @pdf.transparent(0.7) do
       @pdf.fill_rectangle [0 ,(HEIGHT + TEXT_BOX_HEIGHT)/2], WIDTH, TEXT_BOX_HEIGHT
     end
-    @pdf.fill_color "000000"
+    @pdf.fill_color "ffffff"
     @pdf.font FONT, :style => :bold do
       @pdf.text_box v["title"], :at => [0, (HEIGHT + TEXT_BOX_HEIGHT) / 2 ], :width => WIDTH, :height => TEXT_BOX_HEIGHT, :align => :center, :valign => :center
     end
