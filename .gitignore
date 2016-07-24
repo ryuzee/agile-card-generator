@@ -2,3 +2,4 @@ build/*.pdf
 cache/*
 fonts/*.ttf
 fonts/*.otf
+.DS_Store

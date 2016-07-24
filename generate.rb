@@ -4,6 +4,7 @@ require 'net/http'
 require 'uri'
 require "digest/md5"
 require 'bitly'
+require 'RMagick'
 
 FONT = './fonts/japanese_font.ttf'
 
@@ -34,6 +35,10 @@ class Card
     return "./cache/" + Digest::MD5.hexdigest(url) + ".jpg"
   end
 
+  def small_image_path(url)
+    return "./cache/" + Digest::MD5.hexdigest(url) + "_s.jpg"
+  end
+
   def shorten_data_path(url)
     return "./cache/" + Digest::MD5.hexdigest(url) + ".txt"
   end
@@ -43,6 +48,12 @@ class Card
     @page_count += 1
 
     self.save_image(v["image"]) unless File.exist?(self.image_path(v["image"]))
+
+#    image = Magick::Image.read(v['image']).first
+#    image.resize_to_fill!(WIDTH, HEIGHT)
+#    image.write(self.small_image_path(v['image']))
+#    @pdf.image self.small_image_path(v["image"]), :width => WIDTH, :height => HEIGHT
+
     @pdf.image self.image_path(v["image"]), :width => WIDTH, :height => HEIGHT
 
     short_url = ''
